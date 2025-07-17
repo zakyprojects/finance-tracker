@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Renders all transactions to the table in the DOM.
+     * Now includes data-label attributes for mobile view.
      */
     function renderTransactions() {
         transactionList.innerHTML = '';
@@ -73,13 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedTransactions.forEach(transaction => {
             const tr = document.createElement('tr');
             const amountClass = transaction.type === 'income' ? 'income' : 'expense';
+            // IMPORTANT: Added data-label attributes for the CSS to use on mobile
             tr.innerHTML = `
-                <td>${transaction.date}</td>
-                <td class="type-cell ${amountClass}">${transaction.type}</td>
-                <td>${transaction.category}</td>
-                <td>${transaction.description || '-'}</td>
-                <td class="${amountClass}">$${parseFloat(transaction.amount).toFixed(2)}</td>
-                <td>
+                <td data-label="Date">${transaction.date}</td>
+                <td data-label="Type" class="type-cell ${amountClass}">${transaction.type}</td>
+                <td data-label="Category">${transaction.category}</td>
+                <td data-label="Description">${transaction.description || '-'}</td>
+                <td data-label="Amount" class="${amountClass}">$${parseFloat(transaction.amount).toFixed(2)}</td>
+                <td data-label="Action">
                     <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${transaction.id}">
                         Delete
                     </button>

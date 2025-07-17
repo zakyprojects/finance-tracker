@@ -14,12 +14,29 @@ body {
 /* Card Styling */
 .card {
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
     font-weight: 500;
 }
+
+/* Button Styling */
+.btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
 
 /* Color coding for income and expense */
 .income {
@@ -84,12 +101,74 @@ body {
     gap: 1rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* --- Responsive Design for Mobile --- */
+
+/* On small screens (less than 768px), transform the table */
+@media (max-width: 767.98px) {
     h2 {
         font-size: 1.75rem;
     }
     .card-title {
         font-size: 1.25rem;
+    }
+
+    /* Hide the table header, we will use data-labels instead */
+    .table thead {
+        display: none;
+    }
+
+    /* Make each table row behave like a card */
+    .table tr {
+        display: block;
+        margin-bottom: 1.25rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        padding: 0.5rem;
+    }
+
+    /* Make table cells stack vertically */
+    .table td {
+        display: block;
+        text-align: right; /* Align cell content to the right */
+        font-size: 0.95rem;
+        border: none;
+        border-bottom: 1px solid #e9ecef;
+        padding-left: 50%; /* Create space for the label */
+        position: relative;
+        min-height: 2.5rem; /* Ensure consistent height */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .table td:last-child {
+        border-bottom: 0;
+    }
+
+    /* Add the data-label as a pseudo-element before the cell content */
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.75rem;
+        width: 45%;
+        padding-right: 0.75rem;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+    }
+    
+    /* Center the delete button in its "cell" */
+    .table td[data-label="Action"] {
+        padding: 0.5rem 0;
+        justify-content: center;
+    }
+    
+    .table td[data-label="Action"]::before {
+        display: none; /* No need for a label here */
+    }
+    
+    .table td[data-label="Action"] .btn {
+        width: 50%;
     }
 }
