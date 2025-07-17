@@ -24,6 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Functions ---
 
     /**
+     * Formats a date string (YYYY-MM-DD) into "Month Day, Year".
+     * @param {string} dateString - The date string to format.
+     * @returns {string} The formatted date.
+     */
+    function formatDate(dateString) {
+        // Add a time component to the date string to prevent timezone issues
+        const date = new Date(dateString + 'T00:00:00');
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    /**
      * Shows a custom modal for alerts or confirmations.
      * @param {string} title - The title for the modal.
      * @param {string} text - The main message text.
@@ -59,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Renders all transactions to the table in the DOM.
-     * Now includes data-label attributes for mobile view.
+     * Now includes data-label attributes for mobile view and formatted date.
      */
     function renderTransactions() {
         transactionList.innerHTML = '';
@@ -74,9 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedTransactions.forEach(transaction => {
             const tr = document.createElement('tr');
             const amountClass = transaction.type === 'income' ? 'income' : 'expense';
-            // IMPORTANT: Added data-label attributes for the CSS to use on mobile
+            // IMPORTANT: Using formatDate() for the date display
             tr.innerHTML = `
-                <td data-label="Date">${transaction.date}</td>
+                <td data-label="Date">${formatDate(transaction.date)}</td>
                 <td data-label="Type" class="type-cell ${amountClass}">${transaction.type}</td>
                 <td data-label="Category">${transaction.category}</td>
                 <td data-label="Description">${transaction.description || '-'}</td>
