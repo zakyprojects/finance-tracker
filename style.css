@@ -103,7 +103,6 @@ body {
 
 /* --- Responsive Design for Mobile --- */
 
-/* On small screens (less than 768px), transform the table */
 @media (max-width: 767.98px) {
     h2 {
         font-size: 1.75rem;
@@ -112,12 +111,8 @@ body {
         font-size: 1.25rem;
     }
 
-    /* Hide the table header, we will use data-labels instead */
-    .table thead {
-        display: none;
-    }
-
-    /* Make each table row behave like a card */
+    /* Table to Card List Transformation */
+    .table thead { display: none; }
     .table tr {
         display: block;
         margin-bottom: 1.25rem;
@@ -126,8 +121,6 @@ body {
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         padding: 0.5rem;
     }
-
-    /* Make table cells stack vertically */
     .table td {
         display: flex;
         align-items: center;
@@ -136,40 +129,23 @@ body {
         font-size: 0.95rem;
         border: none;
         border-bottom: 1px solid #e9ecef;
-        padding-left: 40%; /* GIVING MORE SPACE for content */
+        padding-left: 40%;
         position: relative;
         min-height: 2.5rem;
-        /* Allow long text to wrap */
         white-space: normal;
         word-break: break-word;
     }
-
-    .table td:last-child {
-        border-bottom: 0;
-    }
-
-    /* Add the data-label as a pseudo-element before the cell content */
+    .table td:last-child { border-bottom: 0; }
     .table td::before {
         content: attr(data-label);
         position: absolute;
         left: 0.75rem;
-        width: 35%; /* ADJUSTED for new padding */
+        width: 35%;
         padding-right: 0.75rem;
         font-weight: bold;
         text-align: left;
     }
-    
-    /* Center the delete button in its "cell" */
-    .table td[data-label="Action"] {
-        padding: 0.5rem 0;
-        justify-content: center;
-    }
-    
-    .table td[data-label="Action"]::before {
-        display: none; /* No need for a label here */
-    }
-    
-    .table td[data-label="Action"] .btn {
-        width: 50%;
-    }
+    .table td[data-label="Action"] { padding: 0.5rem 0; justify-content: center; }
+    .table td[data-label="Action"]::before { display: none; }
+    .table td[data-label="Action"] .btn { width: 50%; }
 }

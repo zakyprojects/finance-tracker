@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalButtons = document.getElementById('modal-buttons');
 
     // --- State Management ---
-    // Load transactions from localStorage or initialize an empty array
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
     // --- Functions ---
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {string} The formatted date.
      */
     function formatDate(dateString) {
-        // Add a time component to the date string to prevent timezone issues
         const date = new Date(dateString + 'T00:00:00');
         return date.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -74,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Renders all transactions to the table in the DOM.
-     * Now includes data-label attributes for mobile view and formatted date.
      */
     function renderTransactions() {
         transactionList.innerHTML = '';
@@ -89,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedTransactions.forEach(transaction => {
             const tr = document.createElement('tr');
             const amountClass = transaction.type === 'income' ? 'income' : 'expense';
-            // IMPORTANT: Using formatDate() for the date display
             tr.innerHTML = `
                 <td data-label="Date">${formatDate(transaction.date)}</td>
                 <td data-label="Type" class="type-cell ${amountClass}">${transaction.type}</td>
@@ -107,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Updates the summary cards (Income, Expense, Balance).
+     * Updates the summary cards.
      */
     function updateSummary() {
         const income = transactions
@@ -126,19 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Adds a new transaction based on form input.
-     * @param {Event} e - The form submission event.
+     * Adds a new transaction.
      */
     function addTransaction(e) {
         e.preventDefault();
 
-        if (amountInput.value.trim() === '' || categoryInput.value.trim() === '' || dateInput.value.trim() === '' || typeInput.value === '') {
-            showModal('Validation Error', 'Please fill out all required fields: Amount, Category, Date, and Type.', [{ text: 'OK', class: 'btn-primary' }]);
+        if (!amountInput.value || !categoryInput.value || !dateInput.value || !typeInput.value) {
+            showModal('Validation Error', 'Please fill out all required fields.', [{ text: 'OK', class: 'btn-primary' }]);
             return;
         }
 
         const newTransaction = {
-            id: Date.now(), // Use timestamp for a unique ID
+            id: Date.now(),
             amount: amountInput.value,
             category: categoryInput.value,
             description: descriptionInput.value,
@@ -155,23 +150,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Handles click events on the transaction list for deleting items.
-     * @param {Event} e - The click event.
+     * Handles clicks on the transaction list to trigger delete confirmation.
      */
     function handleListClick(e) {
-        if (e.target.classList.contains('delete-btn')) {
-            const id = parseInt(e.target.dataset.id, 10);
+        const deleteButton = e.target.closest('.delete-btn');
+        if (deleteButton) {
+            const id = parseInt(deleteButton.dataset.id, 10);
+            
+            // Use the modal for confirmation
             showModal(
                 'Confirm Deletion',
                 'Are you sure you want to delete this transaction?',
                 [
                     {
                         text: 'Cancel',
-                        class: 'btn-secondary',
-                        action: null
+                        class: 'btn-secondary'
+                        // No action needed for cancel
                     },
                     {
-                        text: 'Delete',
+                        text: 'Yes, Delete',
                         class: 'btn-danger',
                         action: () => {
                             transactions = transactions.filter(t => t.id !== id);
@@ -186,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Initializes the application.
+     * Initializes the application and sets up event listeners.
      */
     function init() {
         dateInput.valueAsDate = new Date();
