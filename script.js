@@ -151,34 +151,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Handles clicks on the transaction list to trigger delete confirmation.
+     * --- THIS FUNCTION IS UPDATED ---
      */
     function handleListClick(e) {
         const deleteButton = e.target.closest('.delete-btn');
         if (deleteButton) {
             const id = parseInt(deleteButton.dataset.id, 10);
             
-            // Use the modal for confirmation
-            showModal(
-                'Confirm Deletion',
-                'Are you sure you want to delete this transaction?',
-                [
-                    {
-                        text: 'Cancel',
-                        class: 'btn-secondary'
-                        // No action needed for cancel
-                    },
-                    {
-                        text: 'Yes, Delete',
-                        class: 'btn-danger',
-                        action: () => {
-                            transactions = transactions.filter(t => t.id !== id);
-                            saveTransactions();
-                            renderTransactions();
-                            updateSummary();
-                        }
-                    }
-                ]
-            );
+            // Use the browser's native confirm() dialog for a direct, unmissable prompt.
+            const isConfirmed = confirm('Are you sure you want to delete this transaction?');
+
+            if (isConfirmed) {
+                // If user clicks "OK", proceed with the deletion.
+                transactions = transactions.filter(t => t.id !== id);
+                saveTransactions();
+                renderTransactions();
+                updateSummary();
+            }
+            // If user clicks "Cancel", do nothing.
         }
     }
     
