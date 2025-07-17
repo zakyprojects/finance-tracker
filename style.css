@@ -1,0 +1,95 @@
+/* General Body Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f6fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: 500;
+}
+
+/* Color coding for income and expense */
+.income {
+    color: #198754; /* Bootstrap success color */
+    font-weight: bold;
+}
+
+.expense {
+    color: #dc3545; /* Bootstrap danger color */
+    font-weight: bold;
+}
+
+/* Form Styling */
+#transaction-form .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Table Styling */
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* Capitalize text for type column */
+.type-cell {
+    text-transform: capitalize;
+}
+
+/* Custom Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.modal-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.75rem;
+    }
+    .card-title {
+        font-size: 1.25rem;
+    }
+}
