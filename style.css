@@ -101,6 +101,13 @@ body {
     gap: 1rem;
 }
 
+#love{
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: #6c757d; 
+}
+
 /* --- Responsive Design for Mobile --- */
 
 @media (max-width: 767.98px) {
