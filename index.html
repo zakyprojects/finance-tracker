@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Finance Tracker | Zakria Khan</title>
-  <meta name="description" content="A simple personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.">
+  <title>Finance Tracker: Free Expense Tracker | zakyprojects</title>
+  <meta name="description" content="Free personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Zakria Khan">
-  <meta property="og:title" content="Finance Tracker | Zakria Khan">
-  <meta property="og:description" content="A simple personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.">
+  <meta property="og:title" content="Finance Tracker: Free Expense Tracker | zakyprojects">
+  <meta property="og:description" content="Free personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.">
   <meta property="og:url" content="https://zakyprojects.github.io/finance-tracker/">
-  <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Finance Tracker", "url": "https://zakyprojects.github.io/finance-tracker/", "description": "A simple personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Zakria Khan", "url": "https://zakyprojects.github.io/"}}</script>
+  <meta property="og:image" content="https://zakyprojects.github.io/finance-tracker/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Finance Tracker", "url": "https://zakyprojects.github.io/finance-tracker/", "description": "Free personal finance tracker. Write down income and expenses, see where your money goes each month, and export to CSV. Your data stays in your browser.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Zakria Khan", "url": "https://zakyprojects.github.io/"}}</script>
   <meta name="theme-color" content="#edf1f5">
   <link rel="canonical" href="https://zakyprojects.github.io/finance-tracker/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -25,6 +28,7 @@
       if (t === 'dark') document.documentElement.dataset.theme = 'dark';
     } catch (e) {}
   </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Finance Tracker free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free and needs no account."}}, {"@type": "Question", "name": "Where is my data saved?", "acceptedAnswer": {"@type": "Answer", "text": "Only in this browser on your device. Nothing is sent to a server."}}, {"@type": "Question", "name": "Can I download my entries?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You can export them as a CSV file."}}, {"@type": "Question", "name": "Who made it?", "acceptedAnswer": {"@type": "Answer", "text": "Zakria Khan, a web developer. You can see his other projects on zakyprojects.github.io."}}]}</script>
 </head>
 <body>
   <a class="skip" href="#add">Skip to the form</a>
@@ -171,7 +175,23 @@
     </div>
   </main>
 
-  <footer class="foot wrap">
+  <section class="about" aria-labelledby="about-title">
+    <h2 id="about-title">About Finance Tracker</h2>
+    <p>Finance Tracker is a free income and expense tracker that runs in your browser. Write down what you earn and spend, and see where your money goes each month. It is a practice project by Zakria Khan (zakyprojects).</p>
+    <h3>How to use</h3>
+    <ol>
+      <li>Add an entry: amount, type (income or expense), category and date.</li>
+      <li>Use Month or All time to see your totals and where the money went.</li>
+      <li>Export your entries as a CSV file when you want a copy.</li>
+    </ol>
+    <h3>Questions</h3>
+    <details><summary>Is Finance Tracker free?</summary><p>Yes. It is free and needs no account.</p></details>
+    <details><summary>Where is my data saved?</summary><p>Only in this browser on your device. Nothing is sent to a server.</p></details>
+    <details><summary>Can I download my entries?</summary><p>Yes. You can export them as a CSV file.</p></details>
+    <details><summary>Who made it?</summary><p>Zakria Khan, a web developer. You can see his other projects on zakyprojects.github.io.</p></details>
+  </section>
+
+<footer class="foot wrap">
     <p>Built by <a href="https://zakyprojects.github.io/">Zakria Khan</a>. Your entries are saved only in this browser, never sent anywhere.</p>
     <p><a href="https://github.com/zakyprojects/finance-tracker">Source code</a></p>
   </footer>
