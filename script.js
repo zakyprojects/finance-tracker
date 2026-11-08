@@ -402,6 +402,14 @@
     try { localStorage.setItem(THEME_KEY, root.dataset.theme === 'dark' ? 'dark' : 'light'); } catch (e) {}
     setThemeColor();
   });
+  // Until the visitor picks a theme, keep following the device/browser theme.
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    var saved = null;
+    try { saved = localStorage.getItem(THEME_KEY); } catch (err) {}
+    if (saved === 'dark' || saved === 'light') return;
+    if (e.matches) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+    setThemeColor();
+  });
 
   // ---------- Export, clear, sample ----------
   $('export-btn').addEventListener('click', function () {

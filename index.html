@@ -11,8 +11,12 @@
   <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script>
-    // Apply the saved theme before first paint so the page never flashes.
-    try { if (localStorage.getItem('finance_theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
+    // Before first paint: the saved choice wins, otherwise follow the device/browser theme.
+    try {
+      var t = localStorage.getItem('finance_theme');
+      if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch (e) {}
   </script>
 </head>
 <body>
