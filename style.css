@@ -1,54 +1,61 @@
-/* Finance Tracker — a paper ledger: warm paper, black ink, green ink for money in, red ink for money out. */
+/* Finance Tracker — a ledger book: cool ruled paper, navy ink, green for money in, red for money out. */
 
 @font-face { font-family: "Manrope"; src: url("fonts/manrope.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
 @font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 100 800; font-display: swap; }
 
 :root {
-  --paper: #f6f4ee;
-  --sheet: #fffdf8;
-  --ink: #1c1b19;
-  --ink-soft: #5c5850;
-  --ink-faint: #8a857a;
-  --rule: #e6e1d5;
-  --rule-strong: #d6cfbf;
+  --paper: #edf1f5;       /* cool ledger paper */
+  --sheet: #ffffff;
+  --ink: #132033;         /* navy ink */
+  --ink-soft: #4b5a6e;
+  --ink-faint: #7d899a;
+  --rule: #dce3eb;
+  --rule-strong: #c5d0dc;
+  --line: rgba(31, 59, 99, .07);   /* ruled lines in the background */
+  --accent: #1f3b63;
   --in: #1e7a4c;          /* money in */
-  --in-wash: #e5f2ea;
+  --in-wash: #e3f1e9;
   --red: #b42318;         /* money out */
-  --red-wash: #f8e9e6;
-  --margin: #e9b3ac;      /* the notebook's red margin line */
-  --focus: #1c1b19;
+  --red-wash: #f8e7e5;
+  --margin: #9db2cc;      /* the ledger's margin line */
+  --focus: #1f3b63;
   --radius: 12px;
   --font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --paper: #151618;
-  --sheet: #1d1e21;
-  --ink: #ecebe6;
-  --ink-soft: #b4b1a8;
-  --ink-faint: #85827a;
-  --rule: #2b2c30;
-  --rule-strong: #3a3b40;
+  --paper: #0e1520;
+  --sheet: #151e2b;
+  --ink: #e6ebf2;
+  --ink-soft: #aab5c4;
+  --ink-faint: #7a8698;
+  --rule: #223044;
+  --rule-strong: #2f3f56;
+  --line: rgba(157, 178, 204, .055);
+  --accent: #9db8de;
   --in: #74c69b;
-  --in-wash: #1b3227;
+  --in-wash: #17302a;
   --red: #f19387;
-  --red-wash: #3a2220;
-  --margin: #5a3330;
-  --focus: #ecebe6;
+  --red-wash: #3a2224;
+  --margin: #2f4562;
+  --focus: #9db8de;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0; background: var(--paper); color: var(--ink);
+  margin: 0; color: var(--ink);
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--line) 31px 32px);
+  background-attachment: fixed;
   font-family: var(--font); font-size: 15px; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, p { margin: 0; }
 button, input, select { font: inherit; color: inherit; }
-a { color: var(--in); }
+a { color: var(--accent); }
 .num { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 [hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -207,7 +214,7 @@ a { color: var(--in); }
 
 /* Dialog and toast */
 dialog { border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--sheet); color: var(--ink); padding: 1.4rem; width: min(400px, calc(100% - 2rem)); }
-dialog::backdrop { background: rgba(20, 18, 14, .45); }
+dialog::backdrop { background: rgba(10, 18, 30, .45); }
 dialog h2 { font-size: 1.1rem; margin-bottom: .4rem; }
 dialog p { color: var(--ink-soft); margin-bottom: 1.2rem; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: .5rem; }

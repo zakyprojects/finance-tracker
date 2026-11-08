@@ -395,7 +395,7 @@
 
   var root = document.documentElement;
   var themeMeta = document.querySelector('meta[name="theme-color"]');
-  function setThemeColor() { themeMeta.content = root.dataset.theme === 'dark' ? '#151618' : '#f6f4ee'; }
+  function setThemeColor() { themeMeta.content = root.dataset.theme === 'dark' ? '#0e1520' : '#edf1f5'; }
   setThemeColor();
   $('theme-btn').addEventListener('click', function () {
     if (root.dataset.theme === 'dark') delete root.dataset.theme; else root.dataset.theme = 'dark';
